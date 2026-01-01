@@ -23,6 +23,30 @@
         color: var(--primary-dark);
     }
 
+    mat-card-content {
+        max-height: 600px;
+        overflow-y: auto;
+
+        /* Custom scrollbar styling for better UX */
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+
     table {
         width: 100%;
         background: transparent;
