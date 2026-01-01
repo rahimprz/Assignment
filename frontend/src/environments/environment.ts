@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/currency'
+    apiUrl: 'https://assignment-production-536d.up.railway.app/currency'
 };
