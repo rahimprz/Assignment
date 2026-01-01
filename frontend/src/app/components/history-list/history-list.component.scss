@@ -1,0 +1,66 @@
+.history-container {
+    max-width: 900px;
+    width: 95%;
+    margin: 3rem auto;
+
+    mat-card {
+        border-radius: var(--border-radius-lg);
+        background: var(--card-bg);
+        box-shadow: var(--shadow-lg);
+        padding: 1.5rem;
+        backdrop-filter: blur(10px);
+    }
+
+    mat-card-header {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1rem;
+    }
+
+    mat-card-title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--primary-dark);
+    }
+
+    table {
+        width: 100%;
+        background: transparent;
+        /* Remove default table bg */
+
+        tr.mat-mdc-header-row {
+            height: 50px;
+        }
+
+        th.mat-mdc-header-cell {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        tr.mat-mdc-row {
+            height: 50px;
+            /* Standard height */
+
+            &:hover {
+                background: #f5f5f5;
+                /* Simple gray hover */
+            }
+        }
+
+        td.mat-mdc-cell {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            /* Standard divider */
+
+            strong {
+                color: var(--primary-color);
+                font-weight: 500;
+            }
+        }
+    }
+}

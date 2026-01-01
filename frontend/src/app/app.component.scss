@@ -1,0 +1,57 @@
+/* Sticky Footer Layout */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    /* Pushes footer down */
+    width: 100%;
+}
+
+.app-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: auto;
+    border-top: 1px solid #eee;
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .author {
+        font-weight: 500;
+        color: #333;
+    }
+
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    /* Responsive - always stack on mobile */
+    @media (max-width: 600px) {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+
+        .footer-content {
+            gap: 0.75rem;
+        }
+    }
+}

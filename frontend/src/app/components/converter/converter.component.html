@@ -1,0 +1,73 @@
+<div class="converter-container">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading()"></mat-progress-bar>
+
+    <mat-card class="converter-card">
+        <mat-card-header>
+            <mat-card-title>Currency Converter (Assignment)</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="converterForm" (ngSubmit)="convert()" class="converter-form">
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="amount-field">
+                        <mat-label>Amount</mat-label>
+                        <input matInput type="number" formControlName="amount" placeholder="Ex. 100">
+                        <mat-error *ngIf="converterForm.get('amount')?.hasError('required')">Amount is
+                            required</mat-error>
+                        <mat-error *ngIf="converterForm.get('amount')?.hasError('min')">Must be greater than
+                            0</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="currency-field">
+                        <mat-label>From</mat-label>
+                        <mat-select formControlName="from">
+                            <mat-option *ngFor="let code of currencies" [value]="code">{{ code }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="arrow-icon">➔</div>
+
+                    <mat-form-field appearance="outline" class="currency-field">
+                        <mat-label>To</mat-label>
+                        <mat-select formControlName="to">
+                            <mat-option *ngFor="let code of currencies" [value]="code">{{ code }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="date-field">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="actions">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="converterForm.invalid || isLoading()">
+                        <mat-spinner *ngIf="isLoading()" diameter="20"></mat-spinner>
+                        <span *ngIf="!isLoading()">Convert Currency</span>
+                        <span *ngIf="isLoading()">Converting...</span>
+                    </button>
+                </div>
+            </form>
+
+            <div class="result-box" *ngIf="result()">
+                <div class="main-result">
+                    {{ converterForm.value.amount | number:'1.2-2' }} {{ result()?.from }} =
+                    <span class="highlight">{{ result()?.value | number:'1.2-4' }} {{ result()?.to }}</span>
+                </div>
+                <div class="rate-info">
+                    1 {{ result()?.from }} = {{ result()?.rate | number:'1.4-6' }} {{ result()?.to }}
+                </div>
+                <div class="date-info" *ngIf="converterForm.value.date">
+                    As of: {{ converterForm.value.date | date:'mediumDate' }}
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <app-history-list></app-history-list>
+</div>
