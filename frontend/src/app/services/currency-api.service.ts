@@ -2,12 +2,13 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, finalize, Subject, tap } from 'rxjs';
 import { ConversionRecord } from '../models/conversion-record.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CurrencyApiService {
-    private readonly baseUrl = 'http://localhost:3000/currency';
+    private readonly baseUrl = environment.apiUrl;
     public loading: WritableSignal<boolean> = signal(false);
     private historyRefreshSubject = new Subject<void>();
 
